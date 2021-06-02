@@ -21,6 +21,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputLayout;
+import com.infinigru.pelib.PeLibraryMain;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -123,6 +124,8 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        PeLibraryMain.setApiAddress(getApplicationContext(), "http://192.168.20.3:16080/gru-voice-collector/");
+        PeLibraryMain.getInstance(this).initialize(this);
         // Initialize the associated SharedPreferences file with default values
         PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
 
@@ -239,6 +242,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
     @Override
     public void onResume() {
         super.onResume();
+        PeLibraryMain.getInstance(this).startDetecting(this);
         //noinspection ConstantConditions
         if (UI.getTheme(prefs.getString("theme", "fresh")) != theme ||
                 PreferenceManager.getDefaultSharedPreferences(this).getBoolean("transparentWidget", false) != widgetTransparent) {
@@ -262,6 +266,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        PeLibraryMain.getInstance(this).destroy(this);
         destroyed = true;
 
         if (locationManager != null) {
