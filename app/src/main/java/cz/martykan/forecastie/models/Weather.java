@@ -30,6 +30,7 @@ public class Weather {
     private double lat;
     private double lon;
     private double uvIndex;
+    private double chanceOfPrecipitation;
 
     public enum WindDirection {
         // don't change order
@@ -202,17 +203,29 @@ public class Weather {
         this.sunset = date;
     }
 
-    public void setLat(double lat) {this.lat = lat; }
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
 
-    public double getLat() { return this.lat; }
+    public double getLat() {
+        return this.lat;
+    }
 
-    public void setLon(double lon) { this.lon = lon; }
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
 
-    public double getLon() { return this.lon; }
+    public double getLon() {
+        return this.lon;
+    }
 
-    public double getUvIndex() { return this.uvIndex; }
+    public double getUvIndex() {
+        return this.uvIndex;
+    }
 
-    public void setUvIndex(double uvIndex) { this.uvIndex = uvIndex; }
+    public void setUvIndex(double uvIndex) {
+        this.uvIndex = uvIndex;
+    }
 
     public String getIcon() {
         return icon;
@@ -286,5 +299,13 @@ public class Weather {
 
     public String getLastUpdated() {
         return lastUpdated;
+    }
+
+    public double getChanceOfPrecipitation() {
+        return chanceOfPrecipitation;
+    }
+
+    public void setChanceOfPrecipitation(double chanceOfPrecipitation) {
+        this.chanceOfPrecipitation = chanceOfPrecipitation;
     }
 }
